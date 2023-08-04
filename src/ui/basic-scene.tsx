@@ -1,20 +1,30 @@
 import React from "react";
-import { Loader, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import {
+  Loader,
+  OrbitControls,
+  PerspectiveCamera,
+  Stats,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Floor } from "../components";
+import { Floor, Fog, Light } from "../components";
 import { House } from "./house";
+import { Graves } from "./graves";
+import { fogColor } from "../constants";
 
 export function BasicScene() {
   return (
     <>
-      <Canvas shadows>
-        <ambientLight />
+      <Canvas onCreated={(state) => state.gl.setClearColor(fogColor)} shadows>
+        <Light />
+        <Fog />
         <React.Suspense fallback={null}>
           <Floor />
           <House />
+          <Graves />
         </React.Suspense>
-        <PerspectiveCamera makeDefault position={[0, 2, 5]} />
+        <PerspectiveCamera makeDefault position={[5, 3, 5]} />
         <OrbitControls />
+        <Stats />
       </Canvas>
       <Loader />
     </>
