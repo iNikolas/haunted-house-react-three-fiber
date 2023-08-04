@@ -30,6 +30,7 @@ const graves = Array(gravesNumber)
         rotation-y={(Math.random() - 0.5) * maxGraveInclination}
         geometry={graveGeometry}
         material={graveMaterial}
+        castShadow
       />
     );
   });

@@ -5,6 +5,7 @@ export function Roof() {
     <mesh
       position-y={houseDimensions[1] + roofDimensions[1] / 2}
       rotation-y={Math.PI / 4}
+      castShadow
     >
       <coneGeometry args={roofDimensions} />
       <meshStandardMaterial color={roofColor} />

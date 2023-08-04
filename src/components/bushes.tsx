@@ -17,6 +17,7 @@ export function Bushes({
       key={`bush-${bush.scale}${bush.position.map((p) => `-${p}`)}`}
       geometry={bushGeometry}
       material={bushMateruial}
+      castShadow
     />
   ));
 }

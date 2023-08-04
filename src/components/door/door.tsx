@@ -11,7 +11,7 @@ doorGeometry.setAttribute(
   "uv2",
   new THREE.Float32BufferAttribute(doorGeometry.attributes.uv.array, 2)
 );
-console.log("🚀 ~ file: door.tsx:13 ~ doorGeometry:", doorGeometry);
+
 export function Door() {
   const textureProps = useTexture({
     map: "/textures/door/color.jpg",

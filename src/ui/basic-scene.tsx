@@ -6,10 +6,12 @@ import {
   Stats,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+
 import { Floor, Fog, Light } from "../components";
 import { House } from "./house";
 import { Graves } from "./graves";
-import { fogColor } from "../constants";
+import { fogColor, ghostsList } from "../constants";
+import { Ghosts } from "./ghosts";
 
 export function BasicScene() {
   return (
@@ -21,10 +23,11 @@ export function BasicScene() {
           <Floor />
           <House />
           <Graves />
+          <Ghosts ghostsList={ghostsList} />
         </React.Suspense>
         <PerspectiveCamera makeDefault position={[5, 3, 5]} />
         <OrbitControls />
-        <Stats />
+        <Stats className="stats" />
       </Canvas>
       <Loader />
     </>
