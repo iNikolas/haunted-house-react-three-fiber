@@ -5,14 +5,18 @@ export const graveMaxRadiusThreshold = 3;
 export const maxGraveInclination = 0.4;
 export const lightIntensity = 0.12;
 export const shadowMapResolution = 256;
+export const maxCameraDistance = 14;
 
 export const houseDimensions: [width: number, height: number, length: number] =
   [4, 2.5, 4];
 export const graveDimensions: [width: number, height: number, length: number] =
   [0.6, 0.8, 0.2];
+export const ghostScale: [x: number, y: number, z: number] = [0.4, 0.4, 0.4];
 
 const basicRoofSize = Math.sqrt((houseDimensions[0] * houseDimensions[0]) / 2);
 const roofProtrusion = 0.7;
+
+export const minCameraDistance = houseDimensions[0];
 
 export const roofDimensions: [size: number, height: number, segments: number] =
   [basicRoofSize + roofProtrusion, 1, 4];
@@ -43,7 +47,7 @@ export const ghostsList = [
   {
     color: "#ff00ff",
     getGhostPosition: (elapsedTime: number): Coord3 => {
-      const angle = elapsedTime * 0.5;
+      const angle = elapsedTime * 0.2;
 
       return [
         Math.cos(angle) * 4,
@@ -51,28 +55,70 @@ export const ghostsList = [
         Math.sin(elapsedTime * 3),
       ];
     },
+    getGhostRotation: (elapsedTime: number): Coord3 => {
+      const angle = elapsedTime * 0.1;
+      return [Math.sin(angle) * 0.5, 0, Math.sin(angle) * 0.5];
+    },
   },
   {
     color: "#00ffff",
     getGhostPosition: (elapsedTime: number): Coord3 => {
-      const angle = -elapsedTime * 0.32;
+      const angle = -elapsedTime * 0.16;
 
       return [
         Math.cos(angle) * 5,
-        Math.sin(angle) * 5,
         Math.sin(elapsedTime * 4) + Math.sin(elapsedTime * 2.5),
+        Math.sin(angle) * 5,
       ];
+    },
+    getGhostRotation: (elapsedTime: number): Coord3 => {
+      const angle = elapsedTime * 0.1;
+      return [Math.sin(angle) * 0.05, elapsedTime, Math.sin(angle) * 0.05];
     },
   },
   {
     color: "#ffff00",
     getGhostPosition: (elapsedTime: number): Coord3 => {
-      const angle = -elapsedTime * 0.18;
+      const angle = -elapsedTime * 0.1;
 
       return [
         Math.cos(angle) * (7 + Math.sin(elapsedTime * 0.32)),
-        Math.sin(angle) * (7 + Math.sin(elapsedTime * 0.5)),
         Math.sin(elapsedTime * 4) + Math.sin(elapsedTime * 2.5),
+        Math.sin(angle) * (7 + Math.sin(elapsedTime * 0.5)),
+      ];
+    },
+    getGhostRotation: (elapsedTime: number): Coord3 => {
+      const angle = elapsedTime * 0.5;
+      return [
+        Math.sin(angle) * 0.3,
+        (Math.abs(Math.sin(angle)) * Math.PI) / 4,
+        -Math.sin(angle) * 0.3,
+      ];
+    },
+  },
+  {
+    color: "none",
+    getGhostPosition: (elapsedTime: number): Coord3 => {
+      const angle = elapsedTime * 0.2;
+      return [0, Math.abs(Math.sin(angle)) * 3.5, 1];
+    },
+    getGhostRotation: (elapsedTime: number): Coord3 => {
+      const angle = elapsedTime * 0.5;
+      return [Math.sin(angle) * 0.05, angle, Math.cos(angle) * 0.05];
+    },
+  },
+  {
+    color: "none",
+    getGhostPosition: (elapsedTime: number): Coord3 => {
+      const angle = elapsedTime * 0.6;
+      return [0, 0.6, -2.2 + Math.sin(angle) * 1];
+    },
+    getGhostRotation: (elapsedTime: number): Coord3 => {
+      const angle = elapsedTime * 0.4;
+      return [
+        Math.sin(angle) * 0.1,
+        Math.PI + Math.sin(angle) * 0.3,
+        -Math.sin(angle) * 0.05,
       ];
     },
   },

@@ -7,13 +7,26 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-import { Floor, Fog, Light } from "../components";
+import { Floor, Fog, Light, TextNotification } from "../components";
 import { House } from "./house";
 import { Graves } from "./graves";
-import { fogColor, ghostsList } from "../constants";
+import {
+  fogColor,
+  ghostsList,
+  maxCameraDistance,
+  minCameraDistance,
+} from "../constants";
 import { Ghosts } from "./ghosts";
 
 export function BasicScene() {
+  const [showNotification, setShowNotification] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setShowNotification(false), 12000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Canvas onCreated={(state) => state.gl.setClearColor(fogColor)} shadows>
@@ -25,8 +38,21 @@ export function BasicScene() {
           <Graves />
           <Ghosts ghostsList={ghostsList} />
         </React.Suspense>
-        <PerspectiveCamera makeDefault position={[5, 3, 5]} />
-        <OrbitControls />
+        <PerspectiveCamera
+          makeDefault
+          position={[maxCameraDistance, maxCameraDistance, maxCameraDistance]}
+        >
+          {showNotification && (
+            <TextNotification position-z={-1}>
+              {"SCROLL TO ZOOM \n\r HOLD LMB TO MOVE THE CAMERA"}
+            </TextNotification>
+          )}
+        </PerspectiveCamera>
+        <OrbitControls
+          minDistance={minCameraDistance}
+          maxDistance={maxCameraDistance}
+          maxPolarAngle={Math.PI / 2 - 0.02}
+        />
         <Stats className="stats" />
       </Canvas>
       <Loader />
