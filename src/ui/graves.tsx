@@ -31,6 +31,7 @@ const graves = Array(gravesNumber)
         geometry={graveGeometry}
         material={graveMaterial}
         castShadow
+        receiveShadow
       />
     );
   });

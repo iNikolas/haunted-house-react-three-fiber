@@ -18,6 +18,7 @@ export function Walls() {
   return (
     <mesh
       castShadow
+      receiveShadow
       geometry={wallsGeometry}
       position-y={houseDimensions[1] / 2}
     >

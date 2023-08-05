@@ -7,6 +7,8 @@ export const lightIntensity = 0.12;
 export const shadowMapResolution = 256;
 export const maxCameraDistance = 14;
 
+type Coord3 = [x: number, y: number, z: number];
+
 export const houseDimensions: [width: number, height: number, length: number] =
   [4, 2.5, 4];
 export const graveDimensions: [width: number, height: number, length: number] =
@@ -21,6 +23,8 @@ export const minCameraDistance = houseDimensions[0];
 export const roofDimensions: [size: number, height: number, segments: number] =
   [basicRoofSize + roofProtrusion, 1, 4];
 export const doorDimensions: [width: number, height: number] = [2.2, 2.2];
+export const chimneyDimensions: Coord3 = [0.3, 0.6, 0.3];
+export const chimneyPosition: Coord3 = [1.5, 3.1, 0];
 
 export const roofColor = "#b35f45";
 export const bushColor = "#89c854";
@@ -28,6 +32,7 @@ export const graveColor = "#b2b6b1";
 export const lightColor = "#b9d5ff";
 export const doorLightColor = "#ff7d46";
 export const fogColor = "#262837";
+export const chimneyColor = "#777777";
 
 export const ghostLighting: [intensity: number, distance: number] = [2, 3];
 
@@ -40,8 +45,6 @@ export const bushesList: {
   { scale: 0.4, position: [-0.8, 0.1, 2.2] },
   { scale: 0.15, position: [-1, 0.05, 2.6] },
 ];
-
-type Coord3 = [x: number, y: number, z: number];
 
 export const ghostsList = [
   {

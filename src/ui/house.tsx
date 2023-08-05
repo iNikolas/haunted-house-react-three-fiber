@@ -1,4 +1,4 @@
-import { Door, Roof, Walls, Bushes } from "../components";
+import { Door, Roof, Walls, Bushes, Chimney } from "../components";
 import { bushesList } from "../constants";
 
 export function House() {
@@ -7,6 +7,7 @@ export function House() {
       <Walls />
       <Roof />
       <Door />
+      <Chimney />
       <Bushes bushesList={bushesList} />
     </group>
   );
