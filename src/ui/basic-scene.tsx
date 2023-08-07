@@ -7,12 +7,13 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-import { Floor, Fog, Light, TextNotification } from "../components";
+import { Floor, Fog, Light, Text3d, TextNotification } from "../components";
 import { House } from "./house";
 import { Graves } from "./graves";
 import {
   fogColor,
   ghostsList,
+  initialCameraPosition,
   maxCameraDistance,
   minCameraDistance,
 } from "../constants";
@@ -33,15 +34,13 @@ export function BasicScene() {
         <Light />
         <Fog />
         <React.Suspense fallback={null}>
+          <Text3d>Haunted House</Text3d>
           <Floor />
           <House />
           <Graves />
           <Ghosts ghostsList={ghostsList} />
         </React.Suspense>
-        <PerspectiveCamera
-          makeDefault
-          position={[maxCameraDistance, maxCameraDistance, maxCameraDistance]}
-        >
+        <PerspectiveCamera makeDefault position={initialCameraPosition}>
           {showNotification && (
             <TextNotification position-z={-1}>
               {"SCROLL TO ZOOM \n\r HOLD LMB TO MOVE THE CAMERA"}

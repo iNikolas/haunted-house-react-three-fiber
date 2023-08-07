@@ -13,7 +13,8 @@ export const houseDimensions: [width: number, height: number, length: number] =
   [4, 2.5, 4];
 export const graveDimensions: [width: number, height: number, length: number] =
   [0.6, 0.8, 0.2];
-export const ghostScale: [x: number, y: number, z: number] = [0.4, 0.4, 0.4];
+export const ghostScale: Coord3 = [0.4, 0.4, 0.4];
+export const initialCameraPosition: Coord3 = [8, 6, 8];
 
 const basicRoofSize = Math.sqrt((houseDimensions[0] * houseDimensions[0]) / 2);
 const roofProtrusion = 0.7;

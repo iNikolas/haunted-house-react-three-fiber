@@ -16,7 +16,7 @@ export function DoorLight() {
       castShadow
       shadow-mapSize-width={shadowMapResolution}
       shadow-mapSize-height={shadowMapResolution}
-      shadow-camera-far={7}
+      shadow-camera-far={15}
     />
   );
 }
